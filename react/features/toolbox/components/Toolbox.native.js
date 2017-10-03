@@ -22,6 +22,7 @@ import {
 } from '../functions';
 import styles from './styles';
 import ToolbarButton from './ToolbarButton';
+import { PORTRAIT } from '../../mobile/orientation/constants';
 
 /**
  * The indicator which determines (at bundle time) whether there should be a
@@ -57,6 +58,11 @@ class Toolbox extends Component {
          * Flag showing whether room is locked.
          */
         _locked: PropTypes.bool,
+
+        /**
+         *
+         */
+        _orientation: React.PropTypes.symbol,
 
         /**
          * Handler for hangup.
@@ -120,16 +126,33 @@ class Toolbox extends Component {
     render() {
         return (
             <Container
-                style = { styles.toolbarContainer }
+                style = { this._isPortrait()
+                        ? styles.toolbarContainer
+                        : styles.landscapeToolbarContainer }
                 visible = { this.props._visible }>
                 {
-                    this._renderPrimaryToolbar()
+                    this._isPortrait()
+                        ? this._renderSecondaryToolbar()
+                        : this._renderPrimaryToolbar()
                 }
                 {
-                    this._renderSecondaryToolbar()
+                    this._isPortrait()
+                        ? this._renderPrimaryToolbar()
+                        : this._renderSecondaryToolbar()
                 }
             </Container>
         );
+    }
+
+    /**
+     *
+     * @returns {boolean}
+     * @private
+     */
+    _isPortrait() {
+        console.info('IS PORTRAIT', this.props._orientation);
+
+        return this.props._orientation === PORTRAIT;
     }
 
     /**
@@ -387,6 +410,9 @@ function _mapDispatchToProps(dispatch) {
  */
 function _mapStateToProps(state) {
     const conference = state['features/base/conference'];
+    const { orientation } = state['features/mobile/orientation'];
+
+    console.info("NEW ORIENTATION", orientation);
 
     return {
         ...abstractMapStateToProps(state),
@@ -399,6 +425,11 @@ function _mapStateToProps(state) {
          * @type {boolean}
          */
         _audioOnly: Boolean(conference.audioOnly),
+
+        /**
+         *
+         */
+        _orientation: orientation,
 
         /**
          * The indicator which determines whether the conference is

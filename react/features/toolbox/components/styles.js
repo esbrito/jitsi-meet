@@ -6,7 +6,7 @@ import { BoxModel, ColorPalette, createStyleSheet } from '../../base/styles';
  * @type {Object}
  */
 const _toolbar = {
-    flex: 1,
+    flex: 0,
     position: 'absolute'
 };
 
@@ -86,7 +86,7 @@ export default createStyleSheet({
      */
     primaryToolbar: {
         ..._toolbar,
-        bottom: 3 * BoxModel.margin,
+        bottom: 0,
         flexDirection: 'row',
         justifyContent: 'center',
         left: 0,
@@ -138,6 +138,13 @@ export default createStyleSheet({
      * which contains {@link Toolbar}s.
      */
     toolbarContainer: {
+        flexGrow: 1,
+        position: 'relative',
+        flexDirection: 'column',
+        alignSelf: 'stretch'
+    },
+
+    landscapeToolbarContainer: {
         bottom: 0,
         left: 0,
         position: 'absolute',

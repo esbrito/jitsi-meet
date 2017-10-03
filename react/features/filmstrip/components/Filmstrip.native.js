@@ -9,6 +9,9 @@ import { Container } from '../../base/react';
 
 import Thumbnail from './Thumbnail';
 import { styles } from './_';
+import {PORTRAIT} from '../../mobile/orientation/constants';
+
+import { MediaQuerySelector, responsive } from 'react-native-responsive-ui';
 
 /**
  * Implements a React {@link Component} which represents the filmstrip on
@@ -23,6 +26,10 @@ class Filmstrip extends Component {
      * @static
      */
     static propTypes = {
+        /**
+         *
+         */
+        _orientation: React.PropTypes.symbol,
         /**
          * The participants in the conference.
          *
@@ -49,15 +56,17 @@ class Filmstrip extends Component {
     render() {
         return (
             <Container
-                style = { styles.filmstrip }
+                style = { this._getStyle() }
                 visible = { this.props._visible }>
                 <ScrollView
 
                     // eslint-disable-next-line react/jsx-curly-spacing
                     contentContainerStyle = {
-                        styles.filmstripScrollViewContentContainer
+                        this.props._orientation === PORTRAIT
+                            ? styles.filmstripScrollViewContentContainer
+                            : styles.landscapeFilmstripScrollViewContentContainer
                     } // eslint-disable-line react/jsx-curly-spacing
-                    horizontal = { true }
+                    horizontal = { Boolean(this.props._orientation === PORTRAIT) }
                     showsHorizontalScrollIndicator = { false }
                     showsVerticalScrollIndicator = { false }>
                     {
@@ -70,6 +79,19 @@ class Filmstrip extends Component {
                 </ScrollView>
             </Container>
         );
+    }
+
+    _getStyle() {
+        const { width, height } = this.state.window;
+        const query = MediaQuerySelector.query(
+            { orientation: 'portrait' },
+            width, height);
+
+        console.info('QUERY', width, height, query);
+
+        return query
+            ? styles.filmstrip
+            : styles.landscapeFilmstrip;
     }
 
     /**
@@ -118,6 +140,8 @@ class Filmstrip extends Component {
  * }}
  */
 function _mapStateToProps(state) {
+    const { orientation } = state['features/mobile/orientation'];
+
     return {
         /**
          * The participants in the conference.
@@ -137,8 +161,13 @@ function _mapStateToProps(state) {
          * @private
          * @type {boolean}
          */
-        _visible: !state['features/toolbox'].visible
+        _visible: true,
+
+        /**
+         *
+         */
+        _orientation: orientation
     };
 }
 
-export default connect(_mapStateToProps)(Filmstrip);
+export default connect(_mapStateToProps)(responsive(Filmstrip));

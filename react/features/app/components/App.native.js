@@ -11,6 +11,7 @@ import '../../mobile/background';
 import '../../mobile/callkit';
 import '../../mobile/external-api';
 import '../../mobile/full-screen';
+import { calculateNewOrientation } from '../../mobile/orientation';
 import '../../mobile/permissions';
 import '../../mobile/proximity';
 import '../../mobile/wake-lock';

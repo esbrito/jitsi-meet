@@ -17,6 +17,17 @@ export default createStyleSheet({
         flex: 1
     }),
 
+    topContainer: {
+        alignSelf: 'stretch',
+        bottom: 0,
+        flex: 1,
+        flexDirection: 'column',
+        left: 0,
+        position: 'absolute',
+        right: 0,
+        top: 0
+    },
+
     /**
      * The style of the View rendered while the conference is being connected
      * (i.e. the XMPP connection is being established and the MUC is being

@@ -44,13 +44,20 @@ export default {
      */
     filmstrip: {
         alignItems: 'flex-end',
-        alignSelf: 'stretch',
-        bottom: BoxModel.margin,
-        flex: 1,
+        backgroundColor: 'green',
+        flexGrow: 0,
         flexDirection: 'column',
-        left: 0,
+        height: 90,
+        position: 'relative'
+    },
+
+    landscapeFilmstrip: {
+        backgroundColor: 'green',
+        flexGrow: 0,
+        flexDirection: 'column',
         position: 'absolute',
-        right: 0
+        top: 0,
+        bottom: 0
     },
 
     /**
@@ -59,7 +66,13 @@ export default {
      * to allow scrolling through them if they do not fit within the display.
      */
     filmstripScrollViewContentContainer: {
+        backgroundColor: 'blue',
         paddingHorizontal: BoxModel.padding
+    },
+
+    landscapeFilmstripScrollViewContentContainer: {
+        backgroundColor: 'blue',
+        paddingVertical: BoxModel.padding
     },
 
     /**
