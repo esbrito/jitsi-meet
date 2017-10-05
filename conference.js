@@ -1193,6 +1193,10 @@ export default {
                 (typeof config.hosts.jirecon != "undefined"))?
                 "jirecon" : "colibri";
         }
+        let nick = APP.settings.getDisplayName();
+        if (nick) {
+            options.displayName = nick;
+        }
         return options;
     },
 

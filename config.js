@@ -224,6 +224,13 @@ var config = { // eslint-disable-line no-unused-vars
     //callStatsID: '',
     //callStatsSecret: '',
 
+    // enables callstatsUsername to be reported as statsId and used
+    // by callstats as repoted remote id
+    // enableStatsID: false
+
+    // enables sending participants display name to callstats
+    // enableDisplayNameInStats: false
+
 
     // Privacy
     //
