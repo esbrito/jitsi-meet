@@ -271,7 +271,7 @@ function _onPerformSetMutedCallAction({ callUUID, muted: newValue }) {
         if (oldValue !== newValue) {
             const value = Boolean(newValue);
 
-            sendEvent(`callkit.audio.${value ? 'mute' : 'unmute'}`);
+            sendEvent(`callkit.audio.${value ? 'muted' : 'unmuted'}`);
             dispatch(setAudioMuted(value));
         }
     }

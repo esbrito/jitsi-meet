@@ -159,9 +159,9 @@ export function replaceLocalTrack(oldTrack, newTrack, conference) {
                                     : setAudioMuted;
 
                             sendEvent(
-                                `replacetrack.${newTrack.getType()}.mute`);
+                                `replacetrack.${newTrack.getType()}.muted`);
                             logger.log(
-                                `Replace ${newTrack.getType()} track - mute`);
+                                `Replace ${newTrack.getType()} track - muted`);
 
                             return dispatch(setMuted(newTrack.isMuted()));
                         }

@@ -2264,7 +2264,7 @@ export default {
                     if (audioWasMuted ||
                         currentDevices.audioinput.length >
                         availableAudioInputDevices.length) {
-                        sendEvent('deviceListChanged.audio.mute');
+                        sendEvent('deviceListChanged.audio.muted');
                         logger.log('Audio mute: device list changed');
                         muteLocalAudio(true);
                     }
@@ -2275,7 +2275,7 @@ export default {
                         (videoWasMuted ||
                             currentDevices.videoinput.length >
                                 availableVideoInputDevices.length)) {
-                        sendEvent('deviceListChanged.video.mute');
+                        sendEvent('deviceListChanged.video.muted');
                         logger.log('Video mute: device list changed');
                         muteLocalVideo(true);
                     }
