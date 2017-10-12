@@ -85,8 +85,8 @@ function _setRoom({ dispatch, getState }, next, action) {
 
     // Apply the config.
 
-    sendEvent(`startmuted.audio.${audioMuted ? 'enabled' : 'disabled'}`);
-    sendEvent(`startmuted.video.${videoMuted ? 'enabled' : 'disabled'}`);
+    sendEvent(`startmuted.client.audio.${audioMuted ? 'muted' : 'unmuted'}`);
+    sendEvent(`startmuted.client.video.${videoMuted ? 'muted' : 'unmuted'}`);
 
     logger.log(`Start muted: ${audioMuted ? 'audio, ' : ''}${
         videoMuted ? 'video' : ''}`);

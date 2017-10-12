@@ -76,9 +76,9 @@ function _addConferenceListeners(conference, dispatch) {
             const videoMuted = Boolean(conference.startVideoMuted);
 
             sendEvent(
-                `startedmuted.audio.${audioMuted ? 'enabled' : 'disabled'}`);
+                `startmuted.server.audio.${audioMuted ? 'muted' : 'unmuted'}`);
             sendEvent(
-                `startedmuted.video.${videoMuted ? 'enabled' : 'disabled'}`);
+                `startmuted.server.video.${videoMuted ? 'muted' : 'unmuted'}`);
             logger.log(`Start muted: ${audioMuted ? 'audio, ' : ''}${
                 videoMuted ? 'video' : ''}`);
 

@@ -157,13 +157,14 @@ export function replaceLocalTrack(oldTrack, newTrack, conference) {
                                 = newTrack.isVideoTrack()
                                     ? setVideoMuted
                                     : setAudioMuted;
+                            const isMuted = newTrack.isMuted();
 
-                            sendEvent(
-                                `replacetrack.${newTrack.getType()}.muted`);
-                            logger.log(
-                                `Replace ${newTrack.getType()} track - muted`);
+                            sendEvent(`replacetrack.${newTrack.getType()}.${
+                                isMuted ? 'muted' : 'unmuted'}`);
+                            logger.log(`Replace ${newTrack.getType()} track - ${
+                                isMuted ? 'muted' : 'unmuted'}`);
 
-                            return dispatch(setMuted(newTrack.isMuted()));
+                            return dispatch(setMuted());
                         }
                     })
                     .then(() => {
